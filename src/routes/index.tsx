@@ -1,13 +1,18 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { useAuth } from '../hooks/auth'
-import AppRoutes from './AppRoutes';
-import AuthRoutes from "./AuthRoutes";
 
-const Routes: React.FC = () => {
-    const { user } = useAuth();
+import { ListEvents } from '../pages/ListEvents';
 
-    return user ? <AppRoutes /> : <AuthRoutes />
-}
 
-export default Routes;
+const AppRoutes: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ListEvents />} />
+      </Routes>
+    </BrowserRouter>
+  )
+};
+
+export default AppRoutes;
