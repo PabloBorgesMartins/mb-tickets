@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     .react-modal-content {
         width: 100%;
         max-width: 576px;
-        background:  var(--gray-800);
+        background: var(--gray-800);
         padding: 3rem;
         position: relative;
         border-radius: 0.25rem;
@@ -83,7 +83,7 @@ export const GlobalStyle = createGlobalStyle`
         transition: filter 0.2s;
 
         &:hover{
-            filter: brightness(0.8)
+            filter: brightness(1.2)
         }
     }
 `

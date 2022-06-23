@@ -14,7 +14,30 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
 
-  button {
+  img{
+    max-width: 100px;
+  }
+
+  section{
     margin-left: auto;
+
+    button {
+      margin-left: 1rem;
+      background: transparent;
+      border: 1px solid var(--gray-300);
+      border-radius: .5rem;
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      color: var(--gray-300);
+
+      transition: color 0.25s;
+      transition: background 0.25s;
+
+      &:hover{
+        background: var(--gray-300);
+        color: var(--gray-900);
+        filter: brightness(1.2);
+      }
+    }
   }
 `;

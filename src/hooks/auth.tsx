@@ -39,13 +39,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     async function loadStoragedData(): Promise<void> {
       setLoading(true);
-      const [token, user] = await localStorage.multiGet([
-        '@AppARecreativa:token',
-        '@AppARecreativa:user',
-      ]);
+      const user = await localStorage.getItem('@mbtickets:user');
+      const token = await localStorage.getItem('@mbtickets:token');
 
-      if (token[1] && user[1]) {
-        setData({ token: token[1], user: JSON.parse(user[1]) });
+      if (token && user) {
+        setData({ token, user: JSON.parse(user) });
       }
 
       setLoading(false);
@@ -57,12 +55,18 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signIn = useCallback(async (data: ISignInCredentials) => {
     setLoading(true);
     try {
-      let response = await handleSignIn(data);
+      // let response = await handleSignIn(data);
+      let response = {
+        user: {
+          id: 1,
+          fullname: "Gabriel Vieira",
+          email: "gabriel@gmail.com"
+        },
+        token: "dsnuajdbnsajdnjsa"
+      }
 
-      await localStorage.multiSet([
-        ['@mbtickets:token', response.token],
-        ['@mbtickets:user', JSON.stringify(response.user)],
-      ]);
+      await localStorage.setItem('@mbtickets:user', JSON.stringify(response.user));
+      await localStorage.setItem('@mbtickets:token', response.token);
 
       setData({ token: response.token, user: response.user });
       setLoading(false);
@@ -76,10 +80,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       let response = await handleSignUp(data);
 
-      await localStorage.multiSet([
-        ['@mbtickets:token', response.token],
-        ['@mbtickets:user', JSON.stringify(response.user)],
-      ]);
+      await localStorage.setItem('@mbtickets:user', JSON.stringify(response.user));
+      await localStorage.setItem('@mbtickets:token', response.token);
 
       setData({ token: response.token, user: response.user });
       setLoading(false);
@@ -91,10 +93,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signOut = useCallback(async () => {
     setLoading(true);
-    await localStorage.multiRemove([
-      '@mbtickets:token',
-      '@mbtickets:user',
-    ]);
+    await localStorage.removeItem('@mbtickets:user');
+    await localStorage.removeItem('@mbtickets:token');
 
     setData({} as IAuthState);
     setLoading(false);

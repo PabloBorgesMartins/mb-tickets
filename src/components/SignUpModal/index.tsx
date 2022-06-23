@@ -2,52 +2,48 @@ import { useRef } from 'react';
 import {
     Form,
 } from './styles';
-/*Components*/
-import FormInput from '../FormInput';
-import { useModal } from '../../hooks/modal';
-import { useAuth } from '../../hooks/auth';
-/*Libraries*/
 import Modal from 'react-modal';
+import FormInput from '../FormInput';
+import { FiX } from 'react-icons/fi';
+import { useModal } from '../../hooks/modal';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { FiX } from 'react-icons/fi';
-/*Interfaces*/
-import {
-    ISignInCredentials
-} from '../../interfaces/auth';
+
 interface Errors {
     [key: string]: string;
 }
 
 Modal.setAppElement('#root');
 
-export function SignInModal() {
+export function SignUpModal() {
 
-    const { isModalSignInOpen, setIsModalSignInOpen } = useModal();
-    const { signIn } = useAuth();
+    const { isModalSignUpOpen, setIsModalSignUpOpen } = useModal();
     const formRef = useRef<FormHandles>(null);
-
-    const handleSubmit: SubmitHandler<ISignInCredentials> = async data => {
+    const handleSubmit: SubmitHandler<FormData> = async data => {
         console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
+                fullname: Yup.string()
+                    .required("Nome completo é um campo obrigatório"),
                 email: Yup.string()
                     .email("Digite um email válido")
                     .required("Email é um campo obrigatório"),
                 password: Yup.string()
                     .min(6, "Senha deve conter pelo menos 6 caracteres")
                     .required("Senha é um campo obrigatório"),
+                passwordConfirmation: Yup.string()
+                    .required("Confirmar senha é um campo obrigatório")
+                    .oneOf([Yup.ref('password'), null], 'As senhas devem ser iguais'),
             });
             await schema.validate(data, {
                 abortEarly: false,
             });
-            signIn(data);
-            setIsModalSignInOpen(false);
+
         } catch (err) {
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
-                err.inner.forEach(error => {
+                err.inner.forEach((error) => {
                     if (error.path) {
                         validationErrors[error.path] = error.message;
                     }
@@ -59,20 +55,24 @@ export function SignInModal() {
 
     return (
         <Modal
-            isOpen={isModalSignInOpen}
-            onRequestClose={() => setIsModalSignInOpen(false)}
+            isOpen={isModalSignUpOpen}
+            onRequestClose={() => setIsModalSignUpOpen(false)}
             overlayClassName="react-modal-overlay"
             className="react-modal-content"
         >
             <button
                 type='button'
-                onClick={() => setIsModalSignInOpen(false)}
+                onClick={() => setIsModalSignUpOpen(false)}
                 className="react-modal-close"
             >
                 <FiX color="#737380" size={24} />
             </button>
             <Form ref={formRef} onSubmit={handleSubmit}>
-                <h2>Faça Login</h2>
+                <h2>Faça seu cadastro</h2>
+                <FormInput
+                    name='fullname'
+                    placeholder='Nome completo'
+                />
                 <FormInput
                     name='email'
                     placeholder='Email'
@@ -82,8 +82,15 @@ export function SignInModal() {
                     placeholder='Senha'
                     type="password"
                 />
-                <button type='submit'>
-                    Fazer login
+                <FormInput
+                    name='passwordConfirmation'
+                    placeholder='Confirmação de senha'
+                    type="password"
+                />
+                <button
+                    type='submit'
+                >
+                    Cadastrar
                 </button>
             </Form>
         </Modal>
