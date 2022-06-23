@@ -3,9 +3,15 @@ import { Form as Unform } from '@unform/web'
 
 export const Form = styled(Unform)`
     h2{
-        color: var(--text-title);
+        color: var(--white);
         font-size: 1.5rem;
         margin-bottom: 2rem;
+    }
+
+    div{
+        & + div{
+            margin: 2rem 0;
+        }
     }
 
     button[type="submit"]{

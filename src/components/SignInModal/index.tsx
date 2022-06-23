@@ -18,7 +18,6 @@ export function SignInModal() {
     const handleSubmit: SubmitHandler<FormData> = async data => {
         console.log(data);
         try {
-            // Remove all previous errors
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
                 email: Yup.string()
@@ -31,8 +30,7 @@ export function SignInModal() {
             await schema.validate(data, {
                 abortEarly: false,
             });
-            // Validation passed
-            console.log(data);
+
         } catch (err) {
             const validationErrors = {};
             if (err instanceof Yup.ValidationError) {
@@ -60,6 +58,14 @@ export function SignInModal() {
             </button>
             <Form ref={formRef} onSubmit={handleSubmit}>
                 <h2>Faça Login</h2>
+                <FormInput 
+                    name='email'
+                    placeholder='Email'
+                />
+                <FormInput 
+                    name='password'
+                    placeholder='Senha'
+                />
                 <button
                     type='submit'
                 >
