@@ -1,9 +1,19 @@
 import { Container } from './styles';
+import { EventCard } from '../../components/EventCard';
 
 export function ListEvents() {
     return (
         <Container>
-            ListEvents
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
         </Container>
     )
 }
