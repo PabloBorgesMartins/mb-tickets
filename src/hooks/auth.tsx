@@ -12,8 +12,6 @@ import {
   ISignInCredentials,
   ISignUpCredentials,
   IUserProps,
-  handleSignIn,
-  handleSignUp
 } from '../interfaces/auth'
 
 interface AuthContextData {
@@ -78,7 +76,15 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signUp = useCallback(async (data: ISignUpCredentials) => {
     try {
-      let response = await handleSignUp(data);
+      // let response = await handleSignUp(data);
+      let response = {
+        user: {
+          id: 1,
+          fullname: "Gabriel Vieira",
+          email: "gabriel@gmail.com"
+        },
+        token: "dsnuajdbnsajdnjsa"
+      }
 
       await localStorage.setItem('@mbtickets:user', JSON.stringify(response.user));
       await localStorage.setItem('@mbtickets:token', response.token);

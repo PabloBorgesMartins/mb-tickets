@@ -28,12 +28,13 @@ export const Content = styled.div`
   /* background: red; */
 
   h1{
-    color: var(--gray-300);
+    color: var(--gray-100);
     margin-bottom: 1rem;
   }
 
   p{
     color: var(--gray-300);
+    font-size: .8rem;
     margin-bottom: 1rem;
   }
 
@@ -62,8 +63,8 @@ export const Content = styled.div`
     transition: color 0.25s;
     transition: background 0.25s;
     &:hover{
-      background: var(--gray-300);
-      color: var(--gray-900);
+      background: var(--green-300);
+      color: var(--white);
     }
   }
 `;
