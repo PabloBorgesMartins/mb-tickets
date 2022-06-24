@@ -2,24 +2,31 @@ import { useRef } from 'react';
 import {
     Form,
 } from './styles';
-import Modal from 'react-modal';
+/*Components*/
 import FormInput from '../FormInput';
-import { FiX } from 'react-icons/fi';
 import { useModal } from '../../hooks/modal';
+import { useAuth } from '../../hooks/auth';
+/*Libraries*/
+import Modal from 'react-modal';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-
+import { FiX } from 'react-icons/fi';
+/*Interfaces*/
+import {
+    ISignUpCredentials
+} from '../../interfaces/auth';
 interface Errors {
     [key: string]: string;
 }
-
 Modal.setAppElement('#root');
 
 export function SignUpModal() {
 
     const { isModalSignUpOpen, setIsModalSignUpOpen } = useModal();
+    const { signUp } = useAuth();
     const formRef = useRef<FormHandles>(null);
-    const handleSubmit: SubmitHandler<FormData> = async data => {
+
+    const handleSubmit: SubmitHandler<ISignUpCredentials> = async data => {
         console.log(data);
         try {
             formRef.current?.setErrors({});
@@ -39,7 +46,8 @@ export function SignUpModal() {
             await schema.validate(data, {
                 abortEarly: false,
             });
-
+            signUp(data);
+            setIsModalSignUpOpen(false);
         } catch (err) {
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
@@ -80,12 +88,12 @@ export function SignUpModal() {
                 <FormInput
                     name='password'
                     placeholder='Senha'
-                    type="password"
+                    isPassword
                 />
                 <FormInput
                     name='passwordConfirmation'
                     placeholder='Confirmação de senha'
-                    type="password"
+                    isPassword
                 />
                 <button
                     type='submit'

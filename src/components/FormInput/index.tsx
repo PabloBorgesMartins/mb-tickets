@@ -1,21 +1,24 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     Container,
     ErroredText
 } from './styles';
 import { useField } from '@unform/core';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface Props {
     name: string;
+    isPassword?: boolean;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props
 
-export default function Input({ name, ...rest }: InputProps) {
-    
+export default function Input({ name, isPassword, ...rest }: InputProps) {
+
     const inputRef = useRef<HTMLInputElement>(null);
     const { fieldName, defaultValue, registerField, error } = useField(name);
-    
+    const [isSecure, setIsSecure] = useState(true);
+
     useEffect(() => {
         registerField({
             name: fieldName,
@@ -31,16 +34,28 @@ export default function Input({ name, ...rest }: InputProps) {
             },
         })
     }, [fieldName, registerField]);
-    
+
     return (
-        <Container>
-            <input
-                id={fieldName}
-                ref={inputRef}
-                defaultValue={defaultValue}
-                {...rest}
-            />
+        <div>
+            <Container>
+                <input
+                    id={fieldName}
+                    ref={inputRef}
+                    defaultValue={defaultValue}
+                    type={isSecure && isPassword ? "password" : "text"}
+                    {...rest}
+                />
+                {
+                    isPassword && (
+                        isSecure ? (
+                            <FaEye size={24} onClick={() => setIsSecure(!isSecure)} />
+                        ) : (
+                            <FaEyeSlash size={24} onClick={() => setIsSecure(!isSecure)} />
+                        )
+                    )
+                }
+            </Container>
             <ErroredText>{error}</ErroredText>
-        </Container>
+        </div>
     )
 }

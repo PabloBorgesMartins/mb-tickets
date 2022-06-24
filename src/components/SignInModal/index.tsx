@@ -80,7 +80,7 @@ export function SignInModal() {
                 <FormInput
                     name='password'
                     placeholder='Senha'
-                    type="password"
+                    isPassword
                 />
                 <button type='submit'>
                     Fazer login
