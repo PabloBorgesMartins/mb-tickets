@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.header`
   height: 5rem;
   border-bottom: 1px solid var(--gray-800);
+  background: var(--gray-900);
+  position: sticky;
+  top: 0;
 `;
 
 export const Content = styled.div`
