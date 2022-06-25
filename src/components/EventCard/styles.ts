@@ -18,6 +18,14 @@ export const Container = styled.section`
     height: 156px;
     object-fit: cover;
   }
+
+  @media(max-width: 720px){
+    flex-direction: column;
+
+    img{
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -27,23 +35,55 @@ export const Content = styled.div`
   margin: 0 2rem;
   /* background: red; */
 
-  h1{
+  >h1{
     color: var(--gray-100);
     margin-bottom: 1rem;
   }
 
-  p{
+  >p{
     color: var(--gray-300);
     font-size: .8rem;
     margin-bottom: 1rem;
   }
 
-  span{
+  >span{
     color: var(--gray-300);
     text-align: right;
     width: 100%;
     display: block;
     margin-bottom: 1rem;
+  }
+
+  /* button{
+    border: 1px solid var(--gray-300);
+    border-radius: .5rem;
+    background: transparent;
+    height: 3rem;
+    padding: 0 1rem;
+    width:  min-content ;
+    margin: auto 0 0 auto;
+
+    color: var(--gray-300);
+    font-weight: bold;
+    font-size: 1rem;
+
+    transition: color 0.25s;
+    transition: background 0.25s;
+    &:hover{
+      background: var(--green-300);
+      color: var(--white);
+    }
+  } */
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  margin-top: auto;
+  justify-content: space-between;
+  align-items: center;
+
+  p{
+    color: var(--gray-300);
   }
 
   button{
@@ -52,9 +92,7 @@ export const Content = styled.div`
     background: transparent;
     height: 3rem;
     padding: 0 1rem;
-    width:  min-content ;
-    margin: auto 0 0 auto;
-    /* margin-top: auto; */
+    width: min-content;
 
     color: var(--gray-300);
     font-weight: bold;

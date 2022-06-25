@@ -57,8 +57,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       let response = {
         user: {
           id: 1,
-          fullname: "Gabriel Vieira",
-          email: "gabriel@gmail.com"
+          fullname: "Jhon Doe",
+          email: data.email
         },
         token: "dsnuajdbnsajdnjsa"
       }
@@ -80,8 +80,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       let response = {
         user: {
           id: 1,
-          fullname: "Gabriel Vieira",
-          email: "gabriel@gmail.com"
+          fullname: data.fullname,
+          email: data.email
         },
         token: "dsnuajdbnsajdnjsa"
       }

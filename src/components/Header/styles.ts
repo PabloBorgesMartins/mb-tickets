@@ -4,6 +4,10 @@ export const Container = styled.header`
   height: 5rem;
   border-bottom: 1px solid var(--gray-800);
   background: var(--gray-900);
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
   position: sticky;
   top: 0;
 `;

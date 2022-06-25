@@ -1,6 +1,7 @@
 import {
     Container,
     Content,
+    Footer
 } from './styles';
 import { IFestivity } from '../../interfaces/festivity';
 
@@ -25,9 +26,17 @@ export function EventCard({ data }: ICardProps) {
                 <span>
                     {data.date}
                 </span>
-                <button>
-                    COMPRAR
-                </button>
+                <Footer>
+                    <p>
+                        Valor: {new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(data.amount)}
+                    </p>
+                    <button>
+                        COMPRAR
+                    </button>
+                </Footer>
             </Content>
         </Container >
     )

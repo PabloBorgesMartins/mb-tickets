@@ -52,6 +52,18 @@ export const GlobalStyle = createGlobalStyle`
         cursor: not-allowed;
     }
 
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: var(--gray-900);
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--gray-100);
+        border-radius: 16px;
+    }
+
     .react-modal-overlay {
         background: rgba(0,0,0,0.5);
         position: fixed;
