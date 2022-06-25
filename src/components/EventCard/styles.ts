@@ -54,26 +54,6 @@ export const Content = styled.div`
     margin-bottom: 1rem;
   }
 
-  /* button{
-    border: 1px solid var(--gray-300);
-    border-radius: .5rem;
-    background: transparent;
-    height: 3rem;
-    padding: 0 1rem;
-    width:  min-content ;
-    margin: auto 0 0 auto;
-
-    color: var(--gray-300);
-    font-weight: bold;
-    font-size: 1rem;
-
-    transition: color 0.25s;
-    transition: background 0.25s;
-    &:hover{
-      background: var(--green-300);
-      color: var(--white);
-    }
-  } */
 `;
 
 export const Footer = styled.div`

@@ -4,10 +4,6 @@ export const Container = styled.header`
   height: 5rem;
   border-bottom: 1px solid var(--gray-800);
   background: var(--gray-900);
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
   position: sticky;
   top: 0;
 `;
@@ -28,6 +24,10 @@ export const Content = styled.div`
   section{
     margin-left: auto;
 
+    @media(max-width: 720px){
+      display: none;
+    }
+
     button {
       margin-left: 1rem;
       background: transparent;
@@ -37,8 +37,7 @@ export const Content = styled.div`
       font-size: 1rem;
       color: var(--gray-300);
 
-      transition: color 0.25s;
-      transition: background 0.25s;
+      transition: color 0.25s, background 0.25s;
 
       &:hover{
         background: var(--gray-300);

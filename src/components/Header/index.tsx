@@ -4,6 +4,7 @@ import { Container, Content } from './styles';
 /*Components*/
 import { useAuth } from '../../hooks/auth';
 import { useModal } from '../../hooks/modal';
+import { DropdownMenu } from '../DropdownMenu';
 
 export function Header() {
     const { setIsModalSignInOpen, setIsModalSignUpOpen } = useModal();
@@ -13,6 +14,7 @@ export function Header() {
         <Container>
             <Content>
                 <img src={logoImg} alt="mblabs" />
+                <DropdownMenu />
                 {
                     user ? (
                         <section>

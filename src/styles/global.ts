@@ -12,6 +12,8 @@ export const GlobalStyle = createGlobalStyle`
         --green-300: #33CC95;
         --cyan-500: #61dafb;
         --yellow-500: #eba417;
+
+        --zindex-menu: 10;
     }
     
     * {
