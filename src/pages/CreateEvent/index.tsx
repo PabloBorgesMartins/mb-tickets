@@ -9,6 +9,7 @@ import { SubmitHandler, FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 /*Components*/
 import FormInput from '../../components/FormInput';
+import DatePicker from '../../components/DatePicker';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
@@ -81,6 +82,10 @@ export function CreateEvent() {
                     name='amount'
                     type="number"
                     placeholder='Valor do ingresso'
+                />
+                <DatePicker
+                    placeholderText='Data do evento'
+                    name='date'
                 />
                 <Divider />
                 <h2>Endereço</h2>
