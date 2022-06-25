@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 /*Components*/
 import FormInput from '../../components/FormInput';
 import DatePicker from '../../components/DatePicker';
+import Select from '../../components/Select';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
@@ -57,6 +58,15 @@ export function CreateEvent() {
         }
     }
 
+    const hours = [
+        { value: '6:00', label: '6:00' },
+        { value: '8:00', label: '8:00' },
+        { value: '10:00', label: '10:00' },
+        { value: '12:00', label: '12:00' },
+        { value: '14:00', label: '14:00' },
+        { value: '16:00', label: '16:00' },
+    ]
+
     return (
         <Container>
             <h1>Registre seu evento</h1>
@@ -86,6 +96,11 @@ export function CreateEvent() {
                 <DatePicker
                     placeholderText='Data do evento'
                     name='date'
+                />
+                <Select
+                    placeholder="Horário do evento"
+                    options={hours}
+                    name='time'
                 />
                 <Divider />
                 <h2>Endereço</h2>

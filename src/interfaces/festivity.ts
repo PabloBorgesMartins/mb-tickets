@@ -7,6 +7,7 @@ export interface IFestivity {
     amount: number;
     image: string;
     date: string;
+    time: string;
     state: string;
     city: string;
     street: string;
