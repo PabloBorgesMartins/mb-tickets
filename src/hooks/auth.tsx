@@ -102,6 +102,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     await localStorage.removeItem('@mbtickets:user');
     await localStorage.removeItem('@mbtickets:token');
 
+    window.location.replace("/");
     setData({} as IAuthState);
     setLoading(false);
   }, []);

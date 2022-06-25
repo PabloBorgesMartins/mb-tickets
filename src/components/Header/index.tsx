@@ -5,6 +5,7 @@ import { Container, Content } from './styles';
 import { useAuth } from '../../hooks/auth';
 import { useModal } from '../../hooks/modal';
 import { DropdownMenu } from '../DropdownMenu';
+import { Link } from 'react-router-dom';
 
 export function Header() {
     const { setIsModalSignInOpen, setIsModalSignUpOpen } = useModal();
@@ -18,6 +19,11 @@ export function Header() {
                 {
                     user ? (
                         <section>
+                            <Link to="/evento/criar">
+                                <button>
+                                    <p>Criar evento</p>
+                                </button>
+                            </Link>
                             <button onClick={() => signOut()}>
                                 Sair
                             </button>

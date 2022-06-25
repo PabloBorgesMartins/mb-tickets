@@ -18,6 +18,7 @@ import {
 interface Errors {
     [key: string]: string;
 }
+
 Modal.setAppElement('#root');
 
 export function SignUpModal() {

@@ -3,8 +3,9 @@ import { createServer, Model } from 'miragejs'
 export function startServer() {
     createServer({
         models: {
-            festivity: Model,
+            festivity: Model
         },
+        // trackRequests: false,
 
         seeds(server) {
             server.db.loadData({
@@ -28,7 +29,7 @@ export function startServer() {
                         date: "28/06/2022",
                         userId: 4,
                         createdAt: new Date()
-                    },{
+                    }, {
                         id: 3,
                         title: "Patati Patata Circo Show",
                         description: "A ALEGRIA ESTÁ DE VOLTA! PATATI PATATÁ REESTREIA CIRCO EM SÃO PAULO SEGUINDO TODOS OS PROTOCOLOS DE SEGURANÇA E DISTANCIAMENTO,",
@@ -43,11 +44,13 @@ export function startServer() {
         },
 
         routes() {
-            this.namespace = "api";
+            this.timing = 2000;
 
             this.get('/festivities', () => {
                 return this.schema.all('festivity');
             });
+
+            this.get("/festivities/:id");
 
             this.post('/festivities', (schema, request) => {
                 const data = JSON.parse(request.requestBody);

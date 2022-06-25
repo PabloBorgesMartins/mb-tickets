@@ -13,8 +13,14 @@ export function ListEvents() {
         setFestivities(response.data.festivities);
     }
 
+    const getEvent = async () => {
+        let response = await api.get('festivities/1');
+        console.log("Response", response)
+    }
+
     useEffect(() => {
         loadData();
+        // getEvent()
     }, [])
 
     return (

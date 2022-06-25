@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header } from '../components/Header';
 
 import { ListEvents } from '../pages/ListEvents';
+import { CreateEvent } from '../pages/CreateEvent';
 
 
 const AppRoutes: React.FC = () => {
@@ -11,6 +12,7 @@ const AppRoutes: React.FC = () => {
       <Header />
       <Routes>
         <Route path="/" element={<ListEvents />} />
+        <Route path="/evento/criar" element={<CreateEvent />} />
       </Routes>
     </BrowserRouter>
   )
