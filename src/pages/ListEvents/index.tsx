@@ -15,12 +15,13 @@ export function ListEvents() {
 
     const getEvent = async () => {
         let response = await api.get('festivities/1');
-        console.log("Response", response)
+        // let response = await api.get('festivities/Cidade');
+        console.log("RESPOSTA SEARCH", response)
     }
 
     useEffect(() => {
         loadData();
-        // getEvent()
+        getEvent();
     }, [])
 
     return (

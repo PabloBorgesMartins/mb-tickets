@@ -1,4 +1,4 @@
-
+import { api } from "../services/api";
 
 export interface IFestivity {
     id: number;
@@ -6,10 +6,10 @@ export interface IFestivity {
     description: string;
     amount: number;
     image: string;
-    date: string;
-    time: string;
+    date: Date;
     state: string;
     city: string;
+    district: string;
     street: string;
     number: number;
     userId: number;
@@ -21,6 +21,26 @@ export interface IFestivityData {
     description: string;
     amount: number;
     image: string;
-    date: string;
+    date: Date;
+    state: string;
+    city: string;
+    district: string;
+    street: string;
+    number: number;
     userId: number;
 }
+
+
+interface ResCreateFestivity{
+
+}
+
+/* API FUNCTIONS */
+export const handleCreateFestivity = async (data: IFestivityData): Promise<ResCreateFestivity> => {
+    try {
+        let response = await api.post<ResCreateFestivity>('festivities', data);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};

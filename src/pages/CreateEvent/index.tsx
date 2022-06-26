@@ -10,11 +10,10 @@ import * as Yup from 'yup';
 /*Components*/
 import FormInput from '../../components/FormInput';
 import DatePicker from '../../components/DatePicker';
-import Select from '../../components/Select';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
-import { IFestivityData } from '../../interfaces/festivity';
+import { IFestivityData, handleCreateFestivity } from '../../interfaces/festivity';
 interface Errors {
     [key: string]: string;
 }
@@ -34,17 +33,30 @@ export function CreateEvent() {
                 description: Yup.string()
                     .required("Descrição é um campo obrigatório"),
                 amount: Yup.number()
-                    .required("Valor é um campo obrigatório"),
+                    .required("Valor do ingresso é um campo obrigatório"),
                 image: Yup.string()
                     .required("Link da imagem é um campo obrigatório"),
-                date: Yup.string()
+                date: Yup.date()
                     .required("Data é um campo obrigatório"),
+                state: Yup.string()
+                    .required("Estado é um campo obrigatório"),
+                city: Yup.string()
+                    .required("Cidade é um campo obrigatório"),
+                district: Yup.string()
+                    .required("Bairro é um campo obrigatório"),
+                street: Yup.string()
+                    .required("Rua é um campo obrigatório"),
+                number: Yup.string()
+                    .required("Número é um campo obrigatório"),
             });
             await schema.validate(data, {
                 abortEarly: false,
             });
 
-
+            handleCreateFestivity({
+                ...data,
+                userId: user.id
+            });
         } catch (err) {
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
@@ -57,15 +69,6 @@ export function CreateEvent() {
             }
         }
     }
-
-    const hours = [
-        { value: '6:00', label: '6:00' },
-        { value: '8:00', label: '8:00' },
-        { value: '10:00', label: '10:00' },
-        { value: '12:00', label: '12:00' },
-        { value: '14:00', label: '14:00' },
-        { value: '16:00', label: '16:00' },
-    ]
 
     return (
         <Container>
@@ -96,11 +99,9 @@ export function CreateEvent() {
                 <DatePicker
                     placeholderText='Data do evento'
                     name='date'
-                />
-                <Select
-                    placeholder="Horário do evento"
-                    options={hours}
-                    name='time'
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    dateFormat="dd/MM/yy h:mm aa"
                 />
                 <Divider />
                 <h2>Endereço</h2>
@@ -115,6 +116,11 @@ export function CreateEvent() {
                     name='city'
                     type="text"
                     placeholder='Cidade'
+                />
+                <FormInput
+                    name='district'
+                    type="text"
+                    placeholder='Bairro'
                 />
                 <FormInput
                     name='street'

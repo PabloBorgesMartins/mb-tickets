@@ -20,15 +20,4 @@ export const Container = styled.div`
             filter: brightness(1.2);
         }
     }
-
-    svg{
-        color: white;
-        margin: 0 .5rem;
-        cursor: pointer;
-    }
-
-    span{
-        font-size: 0.8rem;
-        color: var(--red);
-    }
 `;

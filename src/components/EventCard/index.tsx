@@ -24,8 +24,16 @@ export function EventCard({ data }: ICardProps) {
                     {data.description}
                 </p>
                 <span>
-                    {data.date}
+                    {new Intl.DateTimeFormat('pt-BR').format(
+                        new Date(data.date)
+                    )}
                 </span>
+                <p>
+                    {data.street},{" "}{data.number},{" "}{data.district}
+                </p>
+                <p>
+                    {data.city}-{data.state}
+                </p>
                 <Footer>
                     <p>
                         Valor: {new Intl.NumberFormat('pt-BR', {

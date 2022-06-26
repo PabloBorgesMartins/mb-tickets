@@ -24,6 +24,11 @@ export function Header() {
                                     <p>Criar evento</p>
                                 </button>
                             </Link>
+                            <Link to="/">
+                                <button>
+                                    <p>Inicio</p>
+                                </button>
+                            </Link>
                             <button onClick={() => signOut()}>
                                 Sair
                             </button>
