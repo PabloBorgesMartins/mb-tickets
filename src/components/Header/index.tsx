@@ -19,14 +19,19 @@ export function Header() {
                 {
                     user ? (
                         <section>
+                            <Link to="/">
+                                <button>
+                                    <p>Inicio</p>
+                                </button>
+                            </Link>
                             <Link to="/evento/criar">
                                 <button>
                                     <p>Criar evento</p>
                                 </button>
                             </Link>
-                            <Link to="/">
+                            <Link to="/perfil">
                                 <button>
-                                    <p>Inicio</p>
+                                    <p>Perfil</p>
                                 </button>
                             </Link>
                             <button onClick={() => signOut()}>

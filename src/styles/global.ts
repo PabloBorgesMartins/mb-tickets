@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         --cyan-500: #61dafb;
         --yellow-500: #eba417;
 
-        --zindex-menu: 10;
+        --zindex-menu: 100000;
     }
     
     * {

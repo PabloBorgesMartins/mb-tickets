@@ -6,6 +6,7 @@ export const Container = styled.header`
   background: var(--gray-900);
   position: sticky;
   top: 0;
+  z-index: var(--zindex-menu);
 `;
 
 export const Content = styled.div`
