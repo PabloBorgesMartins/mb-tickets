@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {
     Container,
     Form,
@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 /*Components*/
 import FormInput from '../../components/FormInput';
 import DatePicker from '../../components/DatePicker';
+import { LoaderModal } from '../../components/LoaderModal';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
@@ -22,6 +23,7 @@ export function CreateEvent() {
 
     const { user, updateUser } = useAuth();
     const formRef = useRef<FormHandles>(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit: SubmitHandler<IFestivityData> = async data => {
         console.log(data);
@@ -53,6 +55,7 @@ export function CreateEvent() {
                 abortEarly: false,
             });
 
+            setLoading(true);
             let response = await handleCreateFestivity({
                 ...data,
                 userId: user.id
@@ -66,6 +69,7 @@ export function CreateEvent() {
             })
             updateUser(userAux);
         } catch (err) {
+            setLoading(false);
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
                 err.inner.forEach((error) => {
@@ -146,6 +150,11 @@ export function CreateEvent() {
                     Registrar
                 </button>
             </Form>
+            <LoaderModal
+                isOpen={loading}
+                onRequestClose={() => setLoading(false)}
+                callbackLink="/"
+            />
         </Container>
     )
 }

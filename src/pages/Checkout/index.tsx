@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import FormInput from '../../components/FormInput';
 import Loader from '../../components/Loader';
 import DatePicker from '../../components/DatePicker';
+import LoaderModal from '../../components/LoaderModal';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
@@ -27,6 +28,7 @@ export function CheckoutPage() {
     const formRef = useRef<FormHandles>(null);
     const [festivity, setFestivity] = useState({} as IFestivity);
     const [loading, setLoading] = useState(true);
+    const [transactionLoading, setTransactionLoading] = useState(false);
 
     function randomString() {
         let charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -81,6 +83,7 @@ export function CheckoutPage() {
                 abortEarly: false,
             });
 
+            setTransactionLoading(true);
             let userAux = { ...user };
             userAux.purchases.push({
                 festivity: { ...festivity },
@@ -88,6 +91,7 @@ export function CheckoutPage() {
             });
             updateUser(userAux);
         } catch (err) {
+            setTransactionLoading(false);
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
                 err.inner.forEach((error) => {
@@ -161,6 +165,11 @@ export function CheckoutPage() {
                     Comprar
                 </button>
             </Form>
+            <LoaderModal
+                isOpen={transactionLoading}
+                onRequestClose={() => setTransactionLoading(false)}
+                callbackLink="/"
+            />
         </Container>
     )
 }

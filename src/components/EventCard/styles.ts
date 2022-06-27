@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
-
 export const Container = styled.section`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid var(--gray-300);
-  /* border-top: 1px solid var(--gray-300); */
   padding: 1rem 0rem;
-
 
   img{
     border: 1px solid var(--gray-300);
@@ -33,7 +30,6 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   margin: 0 2rem;
-  /* background: red; */
 
   >h1{
     color: var(--gray-100);
@@ -51,6 +47,7 @@ export const Content = styled.div`
     text-align: right;
     width: 100%;
     display: block;
+    font-size: .825rem;
     margin-bottom: 1rem;
   }
 
@@ -64,6 +61,7 @@ export const Footer = styled.div`
 
   p{
     color: var(--gray-300);
+    font-size: 1rem;
   }
 
   button{

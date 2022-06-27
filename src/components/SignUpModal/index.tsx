@@ -67,7 +67,7 @@ export function SignUpModal() {
             isOpen={isModalSignUpOpen}
             onRequestClose={() => setIsModalSignUpOpen(false)}
             overlayClassName="react-modal-overlay"
-            className="react-modal-content"
+            className="react-modal-content"            
         >
             <button
                 type='button'

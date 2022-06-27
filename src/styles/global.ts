@@ -13,7 +13,8 @@ export const GlobalStyle = createGlobalStyle`
         --cyan-500: #61dafb;
         --yellow-500: #eba417;
 
-        --zindex-menu: 100000;
+        --zindex-menu: 10;
+        --zindex-modal: 20;
     }
     
     * {
@@ -76,6 +77,7 @@ export const GlobalStyle = createGlobalStyle`
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: var(--zindex-modal);
     }
 
     .react-modal-content {
@@ -85,6 +87,12 @@ export const GlobalStyle = createGlobalStyle`
         padding: 3rem;
         position: relative;
         border-radius: 0.25rem;
+    }
+
+    .react-modal-loader {
+        width: 100vw;
+        height: 100vh;
+        background: var(--gray-800);
     }
 
     .react-modal-close {

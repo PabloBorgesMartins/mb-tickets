@@ -44,7 +44,7 @@ export function EventCard({ data, isBuyable }: ICardProps) {
                     {data.description}
                 </p>
                 <span>
-                    {new Intl.DateTimeFormat('pt-BR').format(
+                    Data: {new Intl.DateTimeFormat('pt-BR').format(
                         new Date(data.date)
                     )}
                 </span>
