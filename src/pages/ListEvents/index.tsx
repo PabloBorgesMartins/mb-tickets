@@ -34,7 +34,7 @@ export function ListEvents() {
             {
                 festivities.map((item) => {
                     return (
-                        <EventCard key={item.id.toString()} data={item} />
+                        <EventCard key={item.id.toString()} data={item} isBuyable />
                     )
                 })
             }

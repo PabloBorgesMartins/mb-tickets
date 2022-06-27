@@ -8,6 +8,7 @@ import {
 import { useAuth } from '../../hooks/auth';
 import { BsGearFill } from 'react-icons/bs';
 import { TicketList } from './components/TicketList';
+import { FestivityList } from './components/FestivityList';
 
 
 export function Profile() {
@@ -37,8 +38,10 @@ export function Profile() {
                     </RadioBox>
                 </DisplayTypeContainer>
                 {
-                    selected === "tickets" && (
+                    selected === "tickets" ? (
                         <TicketList />
+                    ) : (
+                        <FestivityList />
                     )
                 }
             </UserContent>

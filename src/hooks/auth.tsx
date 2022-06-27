@@ -64,7 +64,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           id: 1,
           fullName: "Jhon Doe",
           email: data.email,
-          purchases: []
+          purchases: [],
+          myFestivities: []
         },
         token: "dsnuajdbnsajdnjsa"
       }
@@ -88,7 +89,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           id: 1,
           fullName: data.fullName,
           email: data.email,
-          purchases: []
+          purchases: [],
+          myFestivities: []
         },
         token: "dsnuajdbnsajdnjsa"
       }
@@ -105,9 +107,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const updateUser = useCallback(async (user: IUserProps) => {
-    console.log("Entrou update user")
     setData({ ...data, user: { ...user } });
-  }, []);
+  }, [data]);
 
   const signOut = useCallback(async () => {
     setLoading(true);

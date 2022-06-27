@@ -32,7 +32,7 @@ export interface IFestivityData {
 
 
 interface ResCreateFestivity {
-
+    festivity: IFestivity;
 }
 interface ResShowFestivity {
     festivity: IFestivity;

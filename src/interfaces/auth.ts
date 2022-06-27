@@ -1,5 +1,6 @@
 import { api } from '../services/api';
 import { IPurchase } from './purchase';
+import { IFestivity } from './festivity';
 
 export interface IAuthState {
     token: string;
@@ -28,6 +29,7 @@ export interface IUserProps {
     fullName: string;
     email: string;
     purchases: IPurchase[];
+    myFestivities: IFestivity[];
 }
 
 /*RESPONSES*/

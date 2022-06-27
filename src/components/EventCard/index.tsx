@@ -13,18 +13,19 @@ import { IFestivity } from '../../interfaces/festivity';
 
 interface ICardProps {
     data: IFestivity;
+    isBuyable?: boolean;
 }
 
-export function EventCard({ data }: ICardProps) {
+export function EventCard({ data, isBuyable }: ICardProps) {
 
     let navigate = useNavigate();
     const { user } = useAuth();
     const { setIsModalSignInOpen } = useModal();
 
     function handleBuyClick() {
-        if(!user){
+        if (!user) {
             setIsModalSignInOpen(true);
-        }else{
+        } else {
             navigate("/evento/comprar/" + data.id, { replace: true });
         }
     }
@@ -60,9 +61,13 @@ export function EventCard({ data }: ICardProps) {
                             currency: 'BRL'
                         }).format(data.amount)}
                     </p>
-                    <button onClick={handleBuyClick}>
-                        COMPRAR
-                    </button>
+                    {
+                        isBuyable && (
+                            <button onClick={handleBuyClick}>
+                                COMPRAR
+                            </button>
+                        )
+                    }
                 </Footer>
             </Content>
         </Container >

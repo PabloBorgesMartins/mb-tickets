@@ -8,8 +8,6 @@ import { useAuth } from '../../../../hooks/auth';
 export function TicketList() {
 
     const { user } = useAuth();
-    let r = (Math.random() + 1).toString(36).substring(0, 100);
-    console.log("random", r);
 
     return (
         <Container>

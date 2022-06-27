@@ -20,7 +20,7 @@ interface Errors {
 
 export function CreateEvent() {
 
-    const { user } = useAuth();
+    const { user, updateUser } = useAuth();
     const formRef = useRef<FormHandles>(null);
 
     const handleSubmit: SubmitHandler<IFestivityData> = async data => {
@@ -53,10 +53,18 @@ export function CreateEvent() {
                 abortEarly: false,
             });
 
-            handleCreateFestivity({
+            let response = await handleCreateFestivity({
                 ...data,
                 userId: user.id
             });
+
+            let userAux = { ...user };
+            userAux.myFestivities.push({
+                ...data,
+                id: response.festivity.id,
+                createdAt: new Date()
+            })
+            updateUser(userAux);
         } catch (err) {
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {

@@ -53,7 +53,7 @@ export function CheckoutPage() {
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     const handleSubmit: SubmitHandler<IFestivityData> = useCallback(async data => {
         console.log(data);
