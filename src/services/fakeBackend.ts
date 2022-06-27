@@ -59,7 +59,7 @@ export function startServer() {
         },
 
         routes() {
-            this.timing = 2000;
+            this.timing = 1000;
 
             // this.get("/festivities/:title");
 

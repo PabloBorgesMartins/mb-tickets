@@ -11,20 +11,20 @@ export interface ISignInCredentials {
 }
 
 export interface ISignUpCredentials {
-    fullname: string;
+    fullName: string;
     email: string;
     password: string;
 }
 
 export interface IUpdateCredentials {
-    fullname: string;
+    fullName: string;
     email: string;
     password: string;
 }
 
 export interface IUserProps {
     id: number;
-    fullname: string;
+    fullName: string;
     email: string;
 }
 

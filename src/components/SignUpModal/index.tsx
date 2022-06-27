@@ -32,7 +32,7 @@ export function SignUpModal() {
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
-                fullname: Yup.string()
+                fullName: Yup.string()
                     .required("Nome completo é um campo obrigatório"),
                 email: Yup.string()
                     .email("Digite um email válido")
@@ -79,7 +79,7 @@ export function SignUpModal() {
             <Form ref={formRef} onSubmit={handleSubmit}>
                 <h2>Faça seu cadastro</h2>
                 <FormInput
-                    name='fullname'
+                    name='fullName'
                     placeholder='Nome completo'
                 />
                 <FormInput

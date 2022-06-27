@@ -3,6 +3,12 @@ import {
     Content,
     Footer
 } from './styles';
+
+/*Hooks*/
+import { useAuth } from '../../hooks/auth';
+import { useModal } from '../../hooks/modal';
+import { useNavigate } from "react-router-dom";
+/*Interfaces*/
 import { IFestivity } from '../../interfaces/festivity';
 
 interface ICardProps {
@@ -10,6 +16,19 @@ interface ICardProps {
 }
 
 export function EventCard({ data }: ICardProps) {
+
+    let navigate = useNavigate();
+    const { user } = useAuth();
+    const { setIsModalSignInOpen } = useModal();
+
+    function handleBuyClick() {
+        if(!user){
+            setIsModalSignInOpen(true);
+        }else{
+            navigate("/evento/comprar/" + data.id, { replace: true });
+        }
+    }
+
     return (
         <Container>
             <img
@@ -41,7 +60,7 @@ export function EventCard({ data }: ICardProps) {
                             currency: 'BRL'
                         }).format(data.amount)}
                     </p>
-                    <button>
+                    <button onClick={handleBuyClick}>
                         COMPRAR
                     </button>
                 </Footer>

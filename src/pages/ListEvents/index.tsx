@@ -21,7 +21,7 @@ export function ListEvents() {
 
     useEffect(() => {
         loadData();
-        getEvent();
+        // getEvent();
     }, [])
 
     return (
