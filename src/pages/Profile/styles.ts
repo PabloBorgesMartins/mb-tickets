@@ -24,7 +24,7 @@ export const UserContent = styled.div`
   width: 100%;
   position: relative;
 
-  img{
+  >img{
     border-radius: 100%;
     border: 2px solid var(--gray-300);
     cursor: pointer;
@@ -34,19 +34,19 @@ export const UserContent = styled.div`
     object-fit: cover;
   }
 
-  h1{
+  >h1{
     font-size: 1.6rem;
     color: var(--white);
     margin: .25rem 0 0rem;
   }
 
-  h2{
+  >h2{
     font-size: 1rem;
     color: var(--gray-300);
     margin: .25rem 0 1rem;
   }
 
-  svg{
+  >svg{
     position: absolute;
     top: 0;
     right:0;

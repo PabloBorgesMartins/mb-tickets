@@ -28,23 +28,32 @@ export function CheckoutPage() {
     const [festivity, setFestivity] = useState({} as IFestivity);
     const [loading, setLoading] = useState(true);
 
-    async function fetchData() {
-        setLoading(true);
-        try {
-            if (id) {
-                let response = await showFestivity(id);
-                setFestivity(response.festivity);
-            }
-            setLoading(false);
-        } catch (err) {
-            setLoading(false);
-            console.log(err);
+    function randomString() {
+        let charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var randomString = '';
+        for (var i = 0; i < 20; i++) {
+            var randomPoz = Math.floor(Math.random() * charSet.length);
+            randomString += charSet.substring(randomPoz, randomPoz + 1);
         }
+        return randomString;
     }
 
     useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            try {
+                if (id) {
+                    let response = await showFestivity(id);
+                    setFestivity(response.festivity);
+                }
+                setLoading(false);
+            } catch (err) {
+                setLoading(false);
+                console.log(err);
+            }
+        }
         fetchData();
-    }, [])
+    }, []);
 
     const handleSubmit: SubmitHandler<IFestivityData> = useCallback(async data => {
         console.log(data);
@@ -75,7 +84,7 @@ export function CheckoutPage() {
             let userAux = { ...user };
             userAux.purchases.push({
                 festivity: { ...festivity },
-                code: "dsabdasbdha"
+                code: randomString()
             });
             updateUser(userAux);
         } catch (err) {
@@ -89,7 +98,7 @@ export function CheckoutPage() {
                 formRef.current?.setErrors(validationErrors);
             }
         }
-    }, [festivity])
+    }, [festivity, updateUser, user]);
 
     if (loading) {
         return (<Loader />);

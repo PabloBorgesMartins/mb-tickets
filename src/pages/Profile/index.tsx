@@ -5,9 +5,9 @@ import {
     DisplayTypeContainer,
     RadioBox
 } from './styles';
-import { EventCard } from '../../components/EventCard';
 import { useAuth } from '../../hooks/auth';
 import { BsGearFill } from 'react-icons/bs';
+import { TicketList } from './components/TicketList';
 
 
 export function Profile() {
@@ -18,7 +18,7 @@ export function Profile() {
     return (
         <Container>
             <UserContent>
-                <img src="https://images.unsplash.com/photo-1653605879308-a28cdbca6fc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" alt="profile-image" />
+                <img src="https://images.unsplash.com/photo-1653605879308-a28cdbca6fc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" alt="profile-avatar" />
                 <h1>{user.fullName}</h1>
                 <h2>{user.email}</h2>
                 <BsGearFill size={28} />
@@ -36,6 +36,11 @@ export function Profile() {
                         <p>Meus Eventos</p>
                     </RadioBox>
                 </DisplayTypeContainer>
+                {
+                    selected === "tickets" && (
+                        <TicketList />
+                    )
+                }
             </UserContent>
         </Container>
     )
