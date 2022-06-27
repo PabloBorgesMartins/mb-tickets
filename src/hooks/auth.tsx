@@ -20,6 +20,7 @@ interface AuthContextData {
   loading: boolean;
   signIn(credentials: ISignInCredentials): Promise<void>;
   signUp(credentials: ISignUpCredentials): Promise<void>;
+  updateUser(user: IUserProps): void;
   signOut(): void;
 }
 
@@ -50,6 +51,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadStoragedData();
   }, []);
 
+  useEffect(() => {
+    console.log("USER AGORA ->", data.user)
+  }, [data]);
+
   const signIn = useCallback(async (data: ISignInCredentials) => {
     setLoading(true);
     try {
@@ -58,7 +63,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         user: {
           id: 1,
           fullName: "Jhon Doe",
-          email: data.email
+          email: data.email,
+          purchases: []
         },
         token: "dsnuajdbnsajdnjsa"
       }
@@ -81,7 +87,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         user: {
           id: 1,
           fullName: data.fullName,
-          email: data.email
+          email: data.email,
+          purchases: []
         },
         token: "dsnuajdbnsajdnjsa"
       }
@@ -95,6 +102,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setLoading(false);
       throw error;
     }
+  }, []);
+
+  const updateUser = useCallback(async (user: IUserProps) => {
+    console.log("Entrou update user")
+    setData({ ...data, user: { ...user } });
   }, []);
 
   const signOut = useCallback(async () => {
@@ -112,6 +124,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       user: data.user,
       token: data.token,
       loading,
+      updateUser,
       signIn,
       signUp,
       signOut,

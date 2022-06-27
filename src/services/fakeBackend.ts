@@ -4,7 +4,6 @@ export function startServer() {
     createServer({
         models: {
             festivity: Model,
-            puchase: Model
         },
         // trackRequests: false,
 

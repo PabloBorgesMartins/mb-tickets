@@ -1,4 +1,5 @@
-import { api } from '../services/api'
+import { api } from '../services/api';
+import { IPurchase } from './purchase';
 
 export interface IAuthState {
     token: string;
@@ -26,6 +27,7 @@ export interface IUserProps {
     id: number;
     fullName: string;
     email: string;
+    purchases: IPurchase[];
 }
 
 /*RESPONSES*/

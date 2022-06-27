@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import {
     Container,
     Form,
@@ -23,7 +23,7 @@ interface Errors {
 export function CheckoutPage() {
 
     let { id } = useParams();
-    const { user } = useAuth();
+    const { user, updateUser } = useAuth();
     const formRef = useRef<FormHandles>(null);
     const [festivity, setFestivity] = useState({} as IFestivity);
     const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ export function CheckoutPage() {
         fetchData();
     }, [])
 
-    const handleSubmit: SubmitHandler<IFestivityData> = async data => {
+    const handleSubmit: SubmitHandler<IFestivityData> = useCallback(async data => {
         console.log(data);
         try {
             formRef.current?.setErrors({});
@@ -72,7 +72,12 @@ export function CheckoutPage() {
                 abortEarly: false,
             });
 
-
+            let userAux = { ...user };
+            userAux.purchases.push({
+                festivity: { ...festivity },
+                code: "dsabdasbdha"
+            });
+            updateUser(userAux);
         } catch (err) {
             const validationErrors = {} as Errors;
             if (err instanceof Yup.ValidationError) {
@@ -84,7 +89,7 @@ export function CheckoutPage() {
                 formRef.current?.setErrors(validationErrors);
             }
         }
-    }
+    }, [festivity])
 
     if (loading) {
         return (<Loader />);
