@@ -26,7 +26,6 @@ export function CreateEvent() {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit: SubmitHandler<IFestivityData> = async data => {
-        console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({

@@ -25,7 +25,6 @@ export function ProfileEdit() {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit: SubmitHandler<IUpdateCredentials> = async data => {
-        console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({

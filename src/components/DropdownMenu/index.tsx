@@ -32,7 +32,17 @@ export function DropdownMenu() {
           <>
             <Link to="/">
               <Button>
-                <p>eventos</p>
+                <p>Inicio</p>
+              </Button>
+            </Link>
+            <Link to="/evento/criar">
+              <Button>
+                <p>Criar evento</p>
+              </Button>
+            </Link>
+            <Link to="/perfil">
+              <Button>
+                <p>Perfil</p>
               </Button>
             </Link>
             <Button onClick={signOut}>

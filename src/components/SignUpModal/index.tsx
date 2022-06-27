@@ -28,7 +28,6 @@ export function SignUpModal() {
     const formRef = useRef<FormHandles>(null);
 
     const handleSubmit: SubmitHandler<ISignUpCredentials> = async data => {
-        console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({

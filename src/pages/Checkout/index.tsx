@@ -58,7 +58,6 @@ export function CheckoutPage() {
     }, [id]);
 
     const handleSubmit: SubmitHandler<IFestivityData> = useCallback(async data => {
-        console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({

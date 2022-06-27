@@ -28,7 +28,6 @@ export function SignInModal() {
     const formRef = useRef<FormHandles>(null);
 
     const handleSubmit: SubmitHandler<ISignInCredentials> = async data => {
-        console.log(data);
         try {
             formRef.current?.setErrors({});
             const schema = Yup.object().shape({
