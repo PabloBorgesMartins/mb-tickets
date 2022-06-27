@@ -3,7 +3,8 @@ import { createServer, Model } from 'miragejs'
 export function startServer() {
     createServer({
         models: {
-            festivity: Model
+            festivity: Model,
+            puchase: Model
         },
         // trackRequests: false,
 
@@ -59,7 +60,7 @@ export function startServer() {
         },
 
         routes() {
-            this.timing = 1000;
+            this.timing = 1500;
 
             // this.get("/festivities/:title");
 

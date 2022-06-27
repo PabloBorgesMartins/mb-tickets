@@ -1,28 +1,33 @@
 import { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { EventCard } from '../../components/EventCard';
-import { api } from '../../services/api';
-import { IFestivity } from '../../interfaces/festivity';
+import { IFestivity, getFestivities } from '../../interfaces/festivity';
+import Loader from '../../components/Loader';
 
 export function ListEvents() {
 
-    const [festivities, setFestivities] = useState<IFestivity[]>([])
+    const [festivities, setFestivities] = useState<IFestivity[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const loadData = async () => {
-        let response = await api.get('festivities');
-        setFestivities(response.data.festivities);
-    }
-
-    const getEvent = async () => {
-        let response = await api.get('festivities/1');
-        // let response = await api.get('festivities/Cidade');
-        console.log("RESPOSTA SEARCH", response)
+        setLoading(true);
+        try {
+            let response = await getFestivities();
+            setFestivities(response.festivities);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log(error)
+        }
     }
 
     useEffect(() => {
         loadData();
-        // getEvent();
-    }, [])
+    }, []);
+
+    if (loading) {
+        return (<Loader />);
+    }
 
     return (
         <Container>

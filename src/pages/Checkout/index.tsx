@@ -15,7 +15,7 @@ import DatePicker from '../../components/DatePicker';
 /*Hooks*/
 import { useAuth } from '../../hooks/auth';
 /*Interfaces*/
-import { IFestivityData, IFestivity, getFestivity } from '../../interfaces/festivity';
+import { IFestivityData, IFestivity, showFestivity } from '../../interfaces/festivity';
 interface Errors {
     [key: string]: string;
 }
@@ -32,7 +32,7 @@ export function CheckoutPage() {
         setLoading(true);
         try {
             if (id) {
-                let response = await getFestivity(id);
+                let response = await showFestivity(id);
                 setFestivity(response.festivity);
             }
             setLoading(false);

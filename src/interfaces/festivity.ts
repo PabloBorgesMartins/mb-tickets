@@ -34,8 +34,11 @@ export interface IFestivityData {
 interface ResCreateFestivity {
 
 }
-interface ResGetFestivity {
+interface ResShowFestivity {
     festivity: IFestivity;
+}
+interface ResGetFestivities {
+    festivities: IFestivity[];
 }
 
 /* API FUNCTIONS */
@@ -48,9 +51,18 @@ export const handleCreateFestivity = async (data: IFestivityData): Promise<ResCr
     }
 };
 
-export const getFestivity = async (id: string): Promise<ResGetFestivity> => {
+export const getFestivities = async (): Promise<ResGetFestivities> => {
     try {
-        let response = await api.get<ResGetFestivity>('festivities/' + id);
+        let response = await api.get<ResGetFestivities>('festivities');
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const showFestivity = async (id: string): Promise<ResShowFestivity> => {
+    try {
+        let response = await api.get<ResShowFestivity>('festivities/' + id);
         return response.data;
     } catch (error) {
         throw error;
